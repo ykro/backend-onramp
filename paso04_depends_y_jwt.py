@@ -1,13 +1,11 @@
-"""Lab 03 (~20 min): Depends, JWT en Base64Url, 401 vs 403 y protección con Lock.
+"""Paso 4 (~12 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
 
-Corre `uv run onramp inspect` para observar cómo 5 hilos simultáneos reservan la misma sala
-sin protección y cómo responden los endpoints actuales.
+Corre `uv run onramp inspect --paso 4` para observar cómo responden las rutas hoy
+y completa los tres TODO hasta que pase `uv run onramp check --paso 4`.
 """
 
 import base64
 import json
-import threading
-import time
 from typing import Annotated
 
 import jwt
@@ -78,8 +76,8 @@ def _extract_bearer_token(authorization: str | None) -> str:
 
 
 def create_app() -> FastAPI:
-    """Crea la aplicación FastAPI del Lab 03 con Depends y validación de JWT."""
-    app = FastAPI(title="Biblioteca Onramp - Lab 03")
+    """Crea la aplicación FastAPI del Paso 4 con Depends y validación de JWT."""
+    app = FastAPI(title="Biblioteca Onramp - Paso 4")
 
     @app.get("/rooms")
     def list_rooms() -> list[dict[str, str]]:
@@ -114,26 +112,3 @@ def create_app() -> FastAPI:
         return repo.add_room(code=payload.code, name=payload.name)
 
     return app
-
-
-class RoomReservationService:
-    """Gestiona reservas exclusivas de salas de estudio."""
-
-    def __init__(self) -> None:
-        # TODO 4: Crea un `threading.Lock()` y úsalo en `reserve` y `reservation_count`
-        # para evitar que varios hilos reserven la misma sala al mismo tiempo.
-        self._reservations: dict[str, list[str]] = {}
-        _ = threading
-
-    def reserve(self, room_code: str, user_id: str, delay_seconds: float = 0.01) -> bool:
-        """Reserva una sala solo si sigue libre; devuelve True si ganó el cupo."""
-        if self._reservations.get(room_code):
-            return False
-        if delay_seconds > 0:
-            time.sleep(delay_seconds)
-        self._reservations.setdefault(room_code, []).append(user_id)
-        return True
-
-    def reservation_count(self, room_code: str) -> int:
-        """Devuelve cuántas reservas quedaron registradas para la sala."""
-        return len(self._reservations.get(room_code, []))

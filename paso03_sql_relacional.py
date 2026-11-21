@@ -1,7 +1,7 @@
-"""Lab 02 (~20 min): SQLite relacional, INNER JOIN, paginación segura e índices.
+"""Paso 3 (~18 min): SQLite relacional, INNER JOIN, paginación segura e índices.
 
-Corre `uv run onramp inspect` para ver que SQLite permite llaves foráneas rotas y hace
-`SCAN books` en lugar de usar un índice. Completa los TODO para pasar las 4 pruebas.
+Corre `uv run onramp inspect --paso 3` para ver que SQLite permite llaves foráneas rotas y hace
+`SCAN books` en lugar de usar un índice. Completa los TODO hasta pasar `--paso 3`.
 """
 
 import sqlite3
