@@ -1,13 +1,13 @@
-"""Paso 1 (~12 min): Contratos HTTP/1.1 (201, 204, 404) y estado aislado por instancia.
+"""Paso 1 (~14 min): Contratos HTTP/1.1 (201, 204, 404), estado aislado y validación Pydantic.
 
-Corre `uv run onramp inspect --paso 1` para ver las respuestas crudas actuales y luego
-corrige los cuatro TODO de este archivo hasta que pase `uv run onramp check --paso 1`.
+Corre `uv run onramp inspect --paso 1` para ver las respuestas actuales del servidor y luego
+corrige los TODO de este archivo hasta que pase `uv run onramp check --paso 1`.
 """
 
 from decimal import Decimal
 
 from fastapi import FastAPI, HTTPException, Response, status
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 # TODO 4: Este diccionario global hace que dos instancias de `create_app()` compartan libros.
 # Mueve el almacenamiento y el contador dentro de `create_app()` para aislar cada instancia.
@@ -18,8 +18,11 @@ _NEXT_ID = 1
 class BookCreate(BaseModel):
     """Datos de entrada para registrar un libro en el catálogo."""
 
+    # TODO 5: Agrega `model_config = ConfigDict(extra="forbid")` para rechazar campos extra con 422.
+    # TODO 6: Restringe `title` con `Field(min_length=1, max_length=120)` y cambia `price` de
+    # `float` a `Decimal` con `Field(gt=Decimal("0"), decimal_places=2)`.
     title: str
-    price: Decimal
+    price: float
 
 
 class BookOut(BaseModel):
@@ -31,14 +34,14 @@ class BookOut(BaseModel):
 
 
 def create_app() -> FastAPI:
-    """Crea una aplicación FastAPI con su propio catálogo en memoria."""
+    """Crea una aplicación FastAPI con su propio catálogo en memoria y validación estricta."""
     app = FastAPI(title="Biblioteca Onramp - Paso 1")
 
     # TODO 1: Cambia el código de estado de POST /books a 201 Created.
     @app.post("/books", response_model=BookOut)
     def create_book(payload: BookCreate) -> BookOut:
         global _NEXT_ID
-        book = BookOut(id=_NEXT_ID, title=payload.title, price=payload.price)
+        book = BookOut(id=_NEXT_ID, title=payload.title, price=Decimal(str(payload.price)))
         _SHARED_BOOKS[_NEXT_ID] = book
         _NEXT_ID += 1
         return book
@@ -66,6 +69,6 @@ def create_app() -> FastAPI:
         # TODO 3: DELETE debe responder 204 No Content y sin cuerpo (`Response(status_code=204)`).
         return {"deleted": book_id}
 
-    # Referencia disponible para el TODO 3.
-    _ = Response
+    # Referencias disponibles para los TODO de este archivo.
+    _ = (ConfigDict, Field, Response)
     return app

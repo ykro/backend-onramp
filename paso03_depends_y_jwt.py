@@ -1,7 +1,7 @@
-"""Paso 4 (~12 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
+"""Paso 3 (~12 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
 
-Corre `uv run onramp inspect --paso 4` para observar cómo responden las rutas hoy
-y completa los tres TODO hasta que pase `uv run onramp check --paso 4`.
+Corre `uv run onramp inspect --paso 3` para observar cómo responden las rutas hoy
+y completa los tres TODO hasta que pase `uv run onramp check --paso 3`.
 """
 
 import base64
@@ -76,8 +76,8 @@ def _extract_bearer_token(authorization: str | None) -> str:
 
 
 def create_app() -> FastAPI:
-    """Crea la aplicación FastAPI del Paso 4 con Depends y validación de JWT."""
-    app = FastAPI(title="Biblioteca Onramp - Paso 4")
+    """Crea la aplicación FastAPI del Paso 3 con Depends y validación de JWT."""
+    app = FastAPI(title="Biblioteca Onramp - Paso 3")
 
     @app.get("/rooms")
     def list_rooms() -> list[dict[str, str]]:

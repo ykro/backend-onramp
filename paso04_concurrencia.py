@@ -1,6 +1,6 @@
-"""Paso 5 (~8 min): Concurrencia y exclusión mutua con `threading.Lock`.
+"""Paso 4 (~8 min): Concurrencia y exclusión mutua con `threading.Lock`.
 
-Corre `uv run onramp inspect --paso 5` para ver cómo 5 hilos sincronizados con `Barrier(5)`
+Corre `uv run onramp inspect --paso 4` para ver cómo 5 hilos sincronizados con `Barrier(5)`
 reservan la misma sala al mismo tiempo. Protege la sección crítica con `threading.Lock`.
 """
 
