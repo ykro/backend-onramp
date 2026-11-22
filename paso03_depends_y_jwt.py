@@ -1,4 +1,4 @@
-"""Paso 3 (~25 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
+"""Paso 3 (~40 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
 
 Corre `uv run onramp inspect --paso 3` para observar cómo responden las rutas hoy
 y completa los tres TODO hasta que pase `uv run onramp check --paso 3`.

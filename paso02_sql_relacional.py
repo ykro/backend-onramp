@@ -1,4 +1,4 @@
-"""Paso 2 (~35 min): SQLite relacional, INNER JOIN, paginación segura e índices.
+"""Paso 2 (~50 min): SQLite relacional, INNER JOIN, paginación segura e índices.
 
 Corre `uv run onramp inspect --paso 2` para ver que SQLite permite llaves foráneas rotas y hace
 `SCAN books` en lugar de usar un índice. Completa los TODO hasta pasar `--paso 2`.
