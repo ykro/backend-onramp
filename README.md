@@ -26,6 +26,7 @@ Este repositorio es un **onramp** práctico y autoevaluable de 60 minutos para p
 
 - Si algún término resulta nuevo, consulta el [glosario con documentación oficial](docs/glosario.md).
 - Para saber cómo leer el `ARCHITECTURE_DECISIONS.md` del curso principal, revisa la guía corta [Cómo leer un ADR](docs/adr-ejemplo.md).
+- Para entender qué hace GitHub Actions cuando subes tu código, lee [Qué es la Integración Continua (CI)](docs/ci.md).
 - Puedes usar tu asistente de IA con libertad mientras resuelves cada paso: [AGENTS.md](AGENTS.md) lo configura en modo tutor socrático para explicar conceptos y darte pistas progresivas.
 
 ## Repositorios relacionados
