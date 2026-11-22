@@ -2,7 +2,7 @@
 
 Sigue el patrón Arrange -> Act -> Assert usando `paso05_pruebas.calculate_late_fee`:
 1. Un caso normal, con varios días de atraso.
-2. Un caso borde, sin atraso.
+2. Un edge case, sin atraso.
 3. Un tercer caso que elijas después de comparar las versiones con `uv run onramp inspect --paso 5`.
 
 El verificador corre estos tests contra la función correcta y contra dos versiones con un bug.
