@@ -1,4 +1,4 @@
-"""Paso 3 (~12 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
+"""Paso 3 (~25 min): Depends, dependency_overrides, JWT en Base64Url y 401 vs 403.
 
 Corre `uv run onramp inspect --paso 3` para observar cómo responden las rutas hoy
 y completa los tres TODO hasta que pase `uv run onramp check --paso 3`.
@@ -59,9 +59,8 @@ def create_access_token(subject: str, role: str) -> str:
 
 def decode_jwt_payload_unverified(token: str) -> dict[str, object]:
     """Decodifica el bloque central de un JWT usando Base64Url sin clave secreta."""
-    # TODO 2: Separa `token` por `.`, toma el segundo segmento (índice 1), agrega el relleno `=`
-    # faltante para que su longitud sea múltiplo de 4, decodifica con `base64.urlsafe_b64decode`
-    # y convierte el JSON a diccionario con `json.loads`.
+    # TODO 2: Devuelve como diccionario el bloque central del JWT, sin verificar la firma.
+    # Ese bloque viene en Base64Url y suele llegar sin el relleno `=` del final.
     _ = (base64, json, token)
     raise NotImplementedError("Completa la decodificación Base64Url del segmento central")
 
@@ -81,8 +80,8 @@ def create_app() -> FastAPI:
 
     @app.get("/rooms")
     def list_rooms() -> list[dict[str, str]]:
-        # TODO 1: Inyecta el repositorio con `Annotated[RoomRepository, Depends(get_room_repo)]`
-        # en lugar de usar `_default_repo` directo para que `dependency_overrides` funcione.
+        # TODO 1: Hoy la ruta lee `_default_repo` directo, así que un test no puede reemplazarlo
+        # con `dependency_overrides`. Compara esta ruta con `create_room`.
         _ = (Annotated, Depends)
         return _default_repo.list_rooms()
 
@@ -102,8 +101,8 @@ def create_app() -> FastAPI:
             ) from exc
 
         if claims.get("role") != "librarian":
-            # TODO 3: Aquí el usuario sí tiene un token válido, pero su rol no tiene permiso.
-            # Cambia este código de 401 a 403 Forbidden.
+            # TODO 3: Aquí el token es válido, sabemos quién es, pero su rol no tiene permiso.
+            # Hoy responde 401, como si no supiéramos quién es.
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Se requiere rol librarian para crear salas",

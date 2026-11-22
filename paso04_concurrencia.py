@@ -1,4 +1,4 @@
-"""Paso 4 (~8 min): Concurrencia y exclusión mutua con `threading.Lock`.
+"""Paso 4 (~15 min): Concurrencia y exclusión mutua con `threading.Lock`.
 
 Corre `uv run onramp inspect --paso 4` para ver cómo 5 hilos sincronizados con `Barrier(5)`
 reservan la misma sala al mismo tiempo. Protege la sección crítica con `threading.Lock`.
@@ -12,8 +12,8 @@ class RoomReservationService:
     """Gestiona reservas exclusivas de salas de estudio."""
 
     def __init__(self) -> None:
-        # TODO 1: Crea `self._lock = threading.Lock()` y úsalo en `reserve` y `reservation_count`
-        # para evitar que varios hilos reserven la misma sala al mismo tiempo.
+        # TODO 1: Hoy varios hilos pueden ver la sala libre al mismo tiempo y reservarla todos.
+        # Solo un hilo a la vez debe revisar disponibilidad y guardar su reserva.
         self._reservations: dict[str, list[str]] = {}
         _ = threading
 

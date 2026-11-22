@@ -1,36 +1,50 @@
-# Biblioteca — Backend Onramp
+# Biblioteca — Backend On-Ramp
 
-Este repositorio es un **onramp** práctico y autoevaluable de 60 minutos para preparar tu entrada al [Curso 1 de Backend con FastAPI](https://github.com/ykro/backend-course). Todo gira alrededor de una biblioteca pequeña (libros, autores, salas de estudio y multas por atraso) usando solo Python y SQLite en memoria, sin Docker y sin cuentas externas. Cada uno de los cinco pasos se puede trabajar y verificar de forma independiente: si ya dominas HTTP y Pydantic, puedes arrancar directo en el Paso 2, el 3, el 4 o el 5.
+Este repositorio es un on-ramp, una nivelación práctica para llegar con lo mínimo al [Curso 1 de Backend con FastAPI](https://github.com/ykro/backend-course). Está pensado para estudiantes que ya programan (estructuras de datos, algoritmos, orientación a objetos) pero nunca han construido una aplicación web ni han usado una base de datos. Todo gira alrededor de una biblioteca pequeña con libros, autores, salas de estudio y multas, y corre en tu computadora con Python y SQLite, sin Docker ni cuentas externas.
 
-![Mapa general de Backend Onramp](docs/diagrams/overview.svg)
+![Mapa de Backend On-Ramp](docs/diagrams/overview.svg)
 
-## Los 5 pasos (independientes)
+## Por dónde empezar
 
-| Paso | Enfoque | Archivo | Guía |
-| --- | --- | --- | --- |
-| Paso 1 | Contratos HTTP/1.1 (`201`, `204`, `404`), estado aislado y Pydantic (`extra="forbid"`, `Decimal`, `422`) | [paso01_http_y_pydantic.py](paso01_http_y_pydantic.py) | [steps/01-http-y-pydantic/README.md](steps/01-http-y-pydantic/README.md) |
-| Paso 2 | SQLite relacional (`PRAGMA foreign_keys`, `INNER JOIN`, paginación e índice) | [paso02_sql_relacional.py](paso02_sql_relacional.py) | [steps/02-sql-relacional/README.md](steps/02-sql-relacional/README.md) |
-| Paso 3 | `Depends`, `dependency_overrides`, JWT en Base64Url y `401` vs `403` | [paso03_depends_y_jwt.py](paso03_depends_y_jwt.py) | [steps/03-depends-y-jwt/README.md](steps/03-depends-y-jwt/README.md) |
-| Paso 4 | Concurrencia y exclusión mutua con `threading.Lock` ante `Barrier(5)` | [paso04_concurrencia.py](paso04_concurrencia.py) | [steps/04-concurrencia/README.md](steps/04-concurrencia/README.md) |
-| Paso 5 | Pruebas automatizadas desde cero con `pytest` (Arrange -> Act -> Assert) | [tests/test_paso05_estudiante.py](tests/test_paso05_estudiante.py) | [steps/05-pruebas-desde-cero/README.md](steps/05-pruebas-desde-cero/README.md) |
+Si es tu primera vez con aplicaciones web, sigue los pasos del 0 al 5 en orden; el recorrido completo toma unas dos horas y media. Si ya levantaste un servidor antes, haz el Paso 0 de todas formas (son minutos y confirma tu entorno) y luego elige el paso que necesites, porque cada uno se verifica por separado.
+
+Cada paso sigue la misma forma. Empieza con tres preguntas para pensar antes de tocar código, explica por qué importa para el curso, te pide leer, depurar y escribir algo pequeño, y cierra con preguntas sobre un caso nuevo. Si te trabas, cada paso tiene tres pistas que van de la idea general a un esqueleto de código.
+
+| Paso | Tiempo | Qué practicas | Archivo | Guía |
+| --- | --- | --- | --- | --- |
+| Paso 0 | 25 min | Instalar `uv`, levantar tu primer servidor y hablarle con el navegador, `/docs` y `curl` | [paso00_hola.py](paso00_hola.py) | [steps/00-entorno-y-primer-servidor](steps/00-entorno-y-primer-servidor/README.md) |
+| Paso 1 | 30 min | Códigos HTTP (`201`, `204`, `404`, `422`), estado aislado y validación con Pydantic y `Decimal` | [paso01_http_y_pydantic.py](paso01_http_y_pydantic.py) | [steps/01-http-y-pydantic](steps/01-http-y-pydantic/README.md) |
+| Paso 2 | 35 min | Tu primera base de datos, tablas, llaves foráneas, `JOIN`, paginación con parámetros e índices en SQLite | [paso02_sql_relacional.py](paso02_sql_relacional.py) | [steps/02-sql-relacional](steps/02-sql-relacional/README.md) |
+| Paso 3 | 25 min | `Depends` y `dependency_overrides`, qué trae un JWT y la diferencia entre `401` y `403` | [paso03_depends_y_jwt.py](paso03_depends_y_jwt.py) | [steps/03-depends-y-jwt](steps/03-depends-y-jwt/README.md) |
+| Paso 4 | 15 min | Requests simultáneos, race conditions y `threading.Lock` | [paso04_concurrencia.py](paso04_concurrencia.py) | [steps/04-concurrencia](steps/04-concurrencia/README.md) |
+| Paso 5 | 20 min | Tests desde cero con `pytest` que se ponen en rojo ante una versión con un bug | [tests/test_paso05_estudiante.py](tests/test_paso05_estudiante.py) | [steps/05-pruebas-desde-cero](steps/05-pruebas-desde-cero/README.md) |
 
 ## Inicio rápido
 
-1. Clona este repositorio en local con Python 3.13 y `uv`.
-2. Instala las dependencias en la raíz del proyecto con `uv sync` (si `uv` reporta permisos en la caché global, usa `UV_CACHE_DIR=/tmp/uv-cache-onramp uv sync`).
-3. Elige el paso por donde quieras empezar y observa cómo responde hoy el código con `uv run onramp inspect --paso N` (o `uv run onramp inspect` para ver los 5 pasos).
-4. Edita el archivo del paso siguiendo su guía en `steps/0N-.../README.md`.
-5. Valida tu avance por paso con `uv run onramp check --paso N` o corre las 17 pruebas completas con `uv run onramp check`.
+1. Instala [uv](https://docs.astral.sh/uv/getting-started/installation/) y clona este repositorio.
+2. Corre `uv sync` en la raíz. `uv` descarga Python 3.13 y las dependencias del proyecto.
+3. Sigue el [Paso 0](steps/00-entorno-y-primer-servidor/README.md) para levantar tu primer servidor.
+4. En cada paso, mira el comportamiento actual con `uv run onramp inspect --paso N` y verifica tu avance con `uv run onramp check --paso N`. Sin `--paso`, los comandos corren todos los pasos.
 
-## Guías de lectura y asistente de IA
+## Errores comunes al preparar el entorno
 
-- Si algún término resulta nuevo, consulta el [glosario con documentación oficial](docs/glosario.md).
-- Para saber cómo leer el `ARCHITECTURE_DECISIONS.md` del curso principal, revisa la guía corta [Cómo leer un ADR](docs/adr-ejemplo.md).
-- Para entender qué hace GitHub Actions cuando subes tu código, lee [Qué es la Integración Continua (CI)](docs/ci.md).
-- Puedes usar tu asistente de IA con libertad mientras resuelves cada paso: [AGENTS.md](AGENTS.md) lo configura en modo tutor socrático para explicar conceptos y darte pistas progresivas.
+| Lo que ves | Qué significa | Qué hacer |
+| --- | --- | --- |
+| `uv: command not found` | `uv` no está instalado o la terminal no ve su carpeta | Instálalo con la [guía oficial](https://docs.astral.sh/uv/getting-started/installation/), cierra y abre la terminal |
+| `uv sync` reporta permisos en la caché | Tu usuario no puede escribir en la caché global | `UV_CACHE_DIR=/tmp/uv-cache-onramp uv sync` |
+| `Address already in use` al correr `uvicorn` | Otro servidor sigue usando el puerto `8000` | Ciérralo con `Ctrl+C` o agrega `--port 8001` |
+| `ModuleNotFoundError: No module named 'fastapi'` | Corriste `python` en lugar de `uv run python` | Antepón `uv run` a cada comando |
+| El navegador dice que no puede conectarse | El servidor no está corriendo | Revisa la terminal donde lanzaste `uvicorn`; debe decir `Uvicorn running on http://127.0.0.1:8000` |
+
+## Lecturas cortas y uso de IA
+
+- El [glosario](docs/glosario.md) explica cada término con un enlace a la documentación oficial.
+- [Cómo leer un ADR](docs/adr-ejemplo.md) te prepara para el `ARCHITECTURE_DECISIONS.md` del curso.
+- [Qué es la Integración Continua (CI)](docs/ci.md) explica qué corre GitHub Actions cuando haces push.
+- Puedes usar tu asistente de IA (Claude Code, Antigravity, Codex o Gemini CLI). [AGENTS.md](AGENTS.md) le pide que te guíe con preguntas y pistas antes de mostrarte código. Si aceptas código que no puedes explicar con tus palabras, el on-ramp pierde su sentido.
 
 ## Repositorios relacionados
 
-- Índice general de nivelaciones: [ykro/courses-onramp](https://github.com/ykro/courses-onramp)
+- Índice de on-ramps: [ykro/courses-onramp](https://github.com/ykro/courses-onramp)
 - Curso principal: [ykro/backend-course](https://github.com/ykro/backend-course)
-- Solución de referencia explicada paso a paso: [ykro/backend-onramp-solution](https://github.com/ykro/backend-onramp-solution)
+- Solución de referencia, con las respuestas de autoevaluación de cada paso: [ykro/backend-onramp-solution](https://github.com/ykro/backend-onramp-solution)
