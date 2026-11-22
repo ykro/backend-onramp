@@ -6,7 +6,7 @@ Este repositorio es un on-ramp, una nivelación práctica para llegar con lo mí
 
 ## Por dónde empezar
 
-Si es tu primera vez con aplicaciones web, sigue los pasos del 0 al 5 en orden; el recorrido completo toma unas tres horas y media. Si ya levantaste un servidor antes, haz el Paso 0 de todas formas (son minutos y confirma tu entorno) y luego elige el paso que necesites, porque cada uno se verifica por separado.
+Si es tu primera vez con aplicaciones web, sigue los pasos del 0 al 5 en orden; el recorrido completo toma unas cuatro horas. Para la Unidad 1 bastan los pasos 0, 1, 3 (solo el `TODO 1`) y 5, unas dos horas; haz los pasos 2 y 4 antes de la Unidad 2 y el resto del Paso 3 antes de la Unidad 3.
 
 Cada paso sigue la misma forma. Empieza con tres preguntas para pensar antes de tocar código, explica por qué importa para el curso, te pide leer, debuguear y escribir algo pequeño, y cierra con preguntas sobre un caso nuevo. Si te trabas, cada paso tiene tres pistas que van de la idea general a un esqueleto de código.
 
@@ -14,7 +14,7 @@ Cada paso sigue la misma forma. Empieza con tres preguntas para pensar antes de 
 | --- | --- | --- | --- | --- |
 | Paso 0 | 35 min | Instalar `uv`, levantar tu primer servidor y hablarle con el navegador, `/docs` y `curl` | [paso00_hola.py](paso00_hola.py) | [steps/00-entorno-y-primer-servidor](steps/00-entorno-y-primer-servidor/README.md) |
 | Paso 1 | 40 min | Códigos HTTP (`201`, `204`, `404`, `422`), estado aislado y validación con Pydantic y `Decimal` | [paso01_http_y_pydantic.py](paso01_http_y_pydantic.py) | [steps/01-http-y-pydantic](steps/01-http-y-pydantic/README.md) |
-| Paso 2 | 50 min | Tu primera base de datos, tablas, llaves foráneas, `JOIN`, paginación con parámetros e índices en SQLite | [paso02_sql_relacional.py](paso02_sql_relacional.py) | [steps/02-sql-relacional](steps/02-sql-relacional/README.md) |
+| Paso 2 | 60 min | Tu primera base de datos, tablas, llaves foráneas, `JOIN`, paginación con parámetros e índices en SQLite | [paso02_sql_relacional.py](paso02_sql_relacional.py) | [steps/02-sql-relacional](steps/02-sql-relacional/README.md) |
 | Paso 3 | 40 min | `Depends` y `dependency_overrides`, qué trae un JWT y la diferencia entre `401` y `403` | [paso03_depends_y_jwt.py](paso03_depends_y_jwt.py) | [steps/03-depends-y-jwt](steps/03-depends-y-jwt/README.md) |
 | Paso 4 | 25 min | Requests simultáneos, race conditions y `threading.Lock` | [paso04_concurrencia.py](paso04_concurrencia.py) | [steps/04-concurrencia](steps/04-concurrencia/README.md) |
 | Paso 5 | 30 min | Tests desde cero con `pytest` que se ponen en rojo ante dos versiones con un bug | [tests/test_paso05_estudiante.py](tests/test_paso05_estudiante.py) | [steps/05-pruebas-desde-cero](steps/05-pruebas-desde-cero/README.md) |
