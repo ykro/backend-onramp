@@ -16,9 +16,10 @@ Un backend real no responde `200 OK` a todo ni confía en el JSON que le mandan.
 
 ## Lo mínimo que necesitas saber
 
+- **Códigos en FastAPI.** Cada decorador acepta `status_code=` (por ejemplo `status_code=status.HTTP_201_CREATED`) para cambiar el `200` por defecto. Cuando una ruta borra sin cuerpo, devuelve `Response(status_code=status.HTTP_204_NO_CONTENT)`.
 - **`nonlocal`.** Una función definida dentro de otra puede leer sus variables, pero para reasignar una, como un contador, necesita declararla `nonlocal`.
-- **`model_config` y `Field`.** En un modelo de Pydantic, `model_config = ConfigDict(...)` controla qué hace con campos desconocidos, y `Field` define límites como longitud mínima o "mayor que".
-- **`Decimal`.** Guarda montos exactos en base 10, a diferencia de `float`. Pydantic sabe validar cuántos decimales trae.
+- **`model_config` y `Field`.** En un modelo de Pydantic, `model_config = ConfigDict(extra="forbid")` rechaza campos desconocidos con `422`, y `Field` fija límites con `min_length`, `max_length`, `gt` (mayor que) y `decimal_places`.
+- **`Decimal`.** Guarda montos exactos en base 10, a diferencia de `float`. Pydantic valida `Decimal` junto con `gt` y `decimal_places`.
 
 ## Qué vas a hacer
 

@@ -24,7 +24,7 @@ Cada paso sigue la misma forma. Empieza con tres preguntas para pensar antes de 
 1. Instala [uv](https://docs.astral.sh/uv/getting-started/installation/) y clona este repositorio con `git clone https://github.com/ykro/backend-onramp.git` (el [Paso 0](steps/00-entorno-y-primer-servidor/README.md) explica la terminal si nunca la has usado).
 2. Corre `uv sync` en la raíz. `uv` descarga Python 3.13 y las dependencias del proyecto.
 3. Sigue el [Paso 0](steps/00-entorno-y-primer-servidor/README.md) para levantar tu primer servidor.
-4. En cada paso, mira el comportamiento actual con `uv run onramp inspect --paso N` y verifica tu avance con `uv run onramp check --paso N`. Sin `--paso`, los comandos corren todos los pasos.
+4. En cada paso, mira el comportamiento actual con `uv run onramp inspect --paso N` y verifica tu avance con `uv run onramp check --paso N`. Sin `--paso`, los comandos corren todos los pasos; con `uv run onramp check --u1` verificas en verde la ruta corta de la Unidad 1 (pasos 0, 1, 3 `TODO 1` y 5).
 
 ## Errores comunes al preparar el entorno
 

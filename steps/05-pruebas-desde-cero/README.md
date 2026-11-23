@@ -14,11 +14,17 @@ Este paso toma unos 30 minutos.
 
 En el curso tus tests tienen que detectar errores reales. Un buen test sigue el patrón Arrange, Act, Assert (preparar datos, ejecutar, comprobar) y cumple dos condiciones, pasa en verde con el código correcto y se pone en rojo cuando aparece un bug. Un solo caso casi nunca basta, porque cada bug se esconde en un lugar distinto. Este paso usa [pytest](https://docs.pytest.org/en/stable/getting-started.html).
 
+## Lo mínimo que necesitas saber
+
+- **Funciones `def test_*`.** `pytest` descubre y ejecuta automáticamente cualquier función cuyo nombre empieza con `test_` dentro de un archivo `test_*.py`.
+- **`assert`.** Cada test comprueba el resultado esperado con `assert resultado == esperado`. Si la expresión es falsa, el test falla y muestra ambos valores.
+- **`Decimal` exacto.** `calculate_late_fee` devuelve un `Decimal` con dos decimales (por ejemplo `Decimal("0.00")` o `Decimal("10.00")`), así que tus `assert` deben comparar contra `Decimal(...)`.
+
 ## Qué vas a hacer
 
 - **Leer.** Lee `calculate_late_fee` en [paso05_pruebas.py](../../paso05_pruebas.py). El verificador guarda dos versiones con un bug, la A y la B. Corre `uv run onramp inspect --paso 5` para ver una tabla con la correcta y las dos versiones lado a lado.
 - **Debuguear.** Antes de escribir tests, describe con tus palabras qué hace mal cada versión. Para cada una, anota un valor de días donde da un resultado distinto de la correcta. Compara esa lista con los cuatro valores que escribiste al inicio: ¿alguno de tus valores habría detectado los dos bugs?
-- **Escribir.** Completa los tres tests de [tests/test_paso05_estudiante.py](../../tests/test_paso05_estudiante.py), un caso normal, un edge case sin atraso y un tercer caso que tú elijas. Juntos tienen que detectar las dos versiones.
+- **Escribir.** Completa los tres tests de [tests/test_paso05_estudiante.py](../../tests/test_paso05_estudiante.py): un caso normal, un edge case sin atraso (cero y días negativos, entrega anticipada) y un tercer caso que tú elijas. Juntos tienen que detectar las dos versiones.
 
 ## Criterios de aceptación
 

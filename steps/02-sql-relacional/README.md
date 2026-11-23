@@ -23,7 +23,18 @@ En la Unidad 2 del curso trabajarás con SQLModel, un ORM (una librería que con
 - **Índice.** Una estructura aparte, parecida a un árbol B, que permite encontrar filas sin recorrer toda la tabla.
 - **El problema N+1.** Si primero pides la lista de libros y después, por cada libro, una consulta para su autor, haces 1 + N consultas. Con mil libros son 1,001 viajes a la base de datos, y la página se vuelve lenta aunque cada consulta sea rápida. Un `JOIN` trae libros y autores en una sola consulta. El test de `CA-2.2` cuenta las consultas y falla si aparece este patrón.
 
-Puedes probar todo esto en vivo con `uv run python` y `import sqlite3; conn = sqlite3.connect(":memory:")`.
+Puedes probar todo esto en vivo con `uv run python` y `import sqlite3; conn = sqlite3.connect(":memory:")`. Así se ve la sintaxis en otro dominio (`cursos` y `docentes`):
+
+```python
+conn.execute("PRAGMA foreign_keys = ON")
+conn.execute("CREATE INDEX IF NOT EXISTS idx_cursos_docente ON cursos(docente_id)")
+sql = (
+    "SELECT c.id, c.nombre, d.nombre AS docente_nombre FROM cursos AS c "
+    "INNER JOIN docentes AS d ON d.id = c.docente_id "
+    "WHERE c.nombre LIKE ? ORDER BY c.nombre ASC LIMIT ? OFFSET ?"
+)
+resultado = [dict(row) for row in conn.execute(sql, ("%datos%", 10, 0)).fetchall()]
+```
 
 ## Qué vas a hacer
 

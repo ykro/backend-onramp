@@ -2,7 +2,7 @@
 
 Sigue el patrón Arrange -> Act -> Assert usando `paso05_pruebas.calculate_late_fee`:
 1. Un caso normal, con varios días de atraso.
-2. Un edge case, sin atraso.
+2. Un edge case, sin atraso: cero y días negativos (entrega anticipada).
 3. Un tercer caso que elijas después de comparar las versiones con `uv run onramp inspect --paso 5`.
 
 El verificador corre estos tests contra la función correcta y contra dos versiones con un bug.
@@ -25,7 +25,7 @@ def test_normal_late_fee() -> None:
 
 
 def test_edge_case_zero_or_negative_days() -> None:
-    """TODO 2: Verifica qué pasa cuando no hay atraso."""
+    """TODO 2: Verifica qué pasa sin atraso: cero y días negativos (entrega anticipada)."""
     _ = (Decimal, paso05_pruebas)
     pytest.fail("Completa test_edge_case_zero_or_negative_days.")
 
